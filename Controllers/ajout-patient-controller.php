@@ -6,7 +6,7 @@ require "../Models/Patients.php";
 $errorMessage = [];
 $successMessage = [];
 
-$reggexPhone = "/^(\+33\s[1-9]{8})|(0[1-9]\s{8})$/";
+$reggexPhone = "/^[0-9]{10}$/";
 $reggexString = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
 
 if (isset($_POST['submit'])) {
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    if ($successMessage == 5) {
+    if (empty($errorMessage)) {
 
         $arrayParameter = [];
 
@@ -80,6 +80,9 @@ if (isset($_POST['submit'])) {
         $arrayParameter['birthdate'] = htmlspecialchars($_POST['birthdate']);
         $arrayParameter['phone'] = htmlspecialchars($_POST['phone']);
         $arrayParameter['mail'] = htmlspecialchars($_POST['mail']);
+        var_dump($arrayParameter);
+        $Patients = new Patients();
+        $Patients -> getNewPatient($arrayParameter);
 
     }
 }
