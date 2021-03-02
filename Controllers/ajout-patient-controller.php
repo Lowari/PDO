@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
         $arrayParameter['birthdate'] = htmlspecialchars($_POST['birthdate']);
         $arrayParameter['phone'] = htmlspecialchars($_POST['phone']);
         $arrayParameter['mail'] = htmlspecialchars($_POST['mail']);
-        var_dump($arrayParameter);
+       
         $Patients = new Patients();
         $Patients -> getNewPatient($arrayParameter);
 
