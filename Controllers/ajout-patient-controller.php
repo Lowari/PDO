@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
             $errorMessage['lastname'] = "Veuillez saisir un nom";
         }
         if (!empty($lastname) && preg_match($reggexString, $lastname)) {
-            $successMessage['lastname'] = $lastname;
+            $successMessage['lastname'] = htmlspecialchars($lastname);
         }
     }
 
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
             $errorMessage["firstname"] = "Veullez saisir un prénom";
         }
         if (!empty($firstname) && preg_match($reggexString, $firstname)) {
-            $successMessage['firstname'] = $firstname;
+            $successMessage['firstname'] = htmlspecialchars($firstname);
         }
     }
 
@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
             $errorMessage['phone'] = "Veuillez saisir un numéro de téléphone";
         }
         if (!empty($phone) && preg_match($reggexPhone, $phone)) {
-            $successMessage['phone'] = $phone;
+            $successMessage['phone'] = htmlspecialchars($phone);
         }
 
         if (isset($_POST['mail'])) {
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
                 $errorMessage['mail'] = "Veuillez saisir un e-mail";
             }
             if (!empty($mail) && filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                $successMessage['mail'] = $mail;
+                $successMessage['mail'] = htmlspecialchars($mail);
             }
         }
 
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
             if (empty($birthdate)) {
                 $errorMessage['birthdate'] = "Veuillez saisir une date de naissance";
             } else {
-                $successMessage['birthdate'] = $birthdate;
+                $successMessage['birthdate'] = htmlspecialchars($birthdate);
             }
         }
     }
