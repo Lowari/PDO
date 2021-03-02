@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
             $errorMessage['lastname'] = "Veuillez saisir un nom valide";
         }
         if (empty($lastname)) {
-            $errorMessage['lastname'] = "Veuillez remplir le champs";
+            $errorMessage['lastname'] = "Veuillez saisir un nom";
         }
         if (!empty($lastname) && preg_match($reggexString, $lastname)) {
             $successMessage['lastname'] = $lastname;
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
             $errorMessage['firstname'] = "Veuillez saisir un prénom valide";
         }
         if (empty($firstname)) {
-            $errorMessage["firstname"] = "Veullez remplir le champs";
+            $errorMessage["firstname"] = "Veullez saisir un prénom";
         }
         if (!empty($firstname) && preg_match($reggexString, $firstname)) {
             $successMessage['firstname'] = $firstname;
@@ -38,11 +38,11 @@ if (isset($_POST['submit'])) {
 
     if (isset($_POST['phone'])) {
         $phone = $_POST['phone'];
-        if (empty($phone)) {
-            $errorMessage['phone'] = "Veuillez remplir le champ";
-        }
         if (!preg_match($reggexPhone, $phone)) {
             $errorMessage['phone'] = "Veuillez saisir un numéro de téléphone valide";
+        }
+        if (empty($phone)) {
+            $errorMessage['phone'] = "Veuillez saisir un numéro de téléphone";
         }
         if (!empty($phone) && preg_match($reggexPhone, $phone)) {
             $successMessage['phone'] = $phone;
@@ -50,11 +50,11 @@ if (isset($_POST['submit'])) {
 
         if (isset($_POST['mail'])) {
             $mail = $_POST['mail'];
-            if (empty($mail)) {
-                $errorMessage['mail'] = "Veuillez remplir le champ";
-            }
             if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                 $errorMessage['mail'] = "Veuillez saisir un mail valide";
+            }
+            if (empty($mail)) {
+                $errorMessage['mail'] = "Veuillez saisir un e-mail";
             }
             if (!empty($mail) && filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                 $successMessage['mail'] = $mail;
@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
         if (isset($_POST['birthdate'])) {
             $birthdate = $_POST['birthdate'];
             if (empty($birthdate)) {
-                $errorMessage['birthdate'] = "Veuillez remplir le champs";
+                $errorMessage['birthdate'] = "Veuillez saisir une date de naissance";
             } else {
                 $successMessage['birthdate'] = $birthdate;
             }

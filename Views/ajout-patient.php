@@ -29,7 +29,10 @@ require "../Controllers/ajout-patient-controller.php"
                         <label for="lastname" class="form-label">Nom :</label>
                     </div>
                     <div class="col-9">
-                        <input type="text" id="lastname" name="lastname" class="form-control" placeholder="ex : Dupont">
+                        <input type="text" id="lastname" name="lastname" class="form-control" placeholder="ex : Dupont" required>
+                        <?php if (isset($errorMessage['lastname'])) { ?>
+                            <p class="text-center text-danger fst-italic"><?= $errorMessage['lastname'] ?></p>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -38,7 +41,10 @@ require "../Controllers/ajout-patient-controller.php"
                         <label for="firstname" class="from-label">Prénom :</label>
                     </div>
                     <div class="col-9">
-                        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ex: Lucas">
+                        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ex: Lucas" required>
+                        <?php if (isset($errorMessage['firstname'])) { ?>
+                            <p class="text-center text-danger fst-italic"><?= $errorMessage['firstname'] ?></p>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -47,7 +53,10 @@ require "../Controllers/ajout-patient-controller.php"
                         <label for="birthdate" class="form-label">Date de naissance :</label>
                     </div>
                     <div class="col-9">
-                        <input type="date" id="birthdate" name="birthdate" class="form-control">
+                        <input type="date" id="birthdate" name="birthdate" class="form-control" required>
+                        <?php if (isset($errorMessage['birthdate'])) { ?>
+                            <p class="text-danger fst-italic text-center"><?= $errorMessage['birthdate'] ?></p>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -56,7 +65,10 @@ require "../Controllers/ajout-patient-controller.php"
                         <label for="phone" class="form-label">Numéro de téléphone :</label>
                     </div>
                     <div class="col-9">
-                        <input type="number" id="phone" name="phone" class="form-control" placeholder="ex : 0601987545">
+                        <input type="number" id="phone" name="phone" class="form-control" placeholder="ex : 0601987545" required>
+                        <?php if (isset($errorMessage['phone'])) { ?>
+                            <p class="text-center fst-italic text-danger"><?= $errorMessage['phone'] ?></p>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -65,7 +77,10 @@ require "../Controllers/ajout-patient-controller.php"
                         <label for="mail" class="form-label">Mail :</label>
                     </div>
                     <div class="col-9">
-                        <input type="email" id="mail" class="form-control" name="mail" placeholder="ex : dupont.lucas@gmail.com">
+                        <input type="email" id="mail" class="form-control" name="mail" placeholder="ex : dupont.lucas@gmail.com" required>
+                        <?php if (isset($errorMessage['mail'])) { ?>
+                            <p class="text-center fst-italic text-danger"><?= $errorMessage['mail'] ?></p>
+                        <?php } ?>
                     </div>
                 </div>
 
