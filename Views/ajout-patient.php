@@ -86,6 +86,7 @@ require "../Controllers/ajout-patient-controller.php"
 
                 <div class="text-center">
                     <button type="submit" name="submit" class="btn btn-success">Valider</button>
+                    <a href="liste-patients.php" class="btn btn-primary">Voir liste patients</a>
                 </div>
 
             </form>

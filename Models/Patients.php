@@ -158,4 +158,20 @@ class Patients extends Database {
         return $buildQuery -> execute();
 
     }
+
+    public function getProfilePatient($id) {
+        $query = "SELECT * FROM `patients` WHERE `id` = :id;";
+        $buildQuery = parent::getDb() -> prepare($query);
+
+        $buildQuery -> bindParam('id', $id);
+        
+        $buildQuery -> execute();
+        $resultQuery = $buildQuery -> fetch(PDO::FETCH_ASSOC);
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
+
 }
