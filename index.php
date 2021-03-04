@@ -12,6 +12,7 @@
     <ul>
         <li><a href="Views/ajout-patient.php">Ajout d'un patient</a></li>
         <li><a href="Views/liste-patients.php">Liste patient</a></li>
+        <li><a href="Views/rendez-vous.php">Prendre Rendez-vous</a></li>
     </ul>
 
 

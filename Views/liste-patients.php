@@ -23,6 +23,7 @@ require "../Controllers/liste-patients-controller.php";
 
     <div class="text-center">
         <a href="ajout-patient.php" class="btn btn-success">Ajouter un nouveau patient</a>
+        <a href="../index.php" class="btn btn-primary">Acceuil</a>
     </div>
 
 </body>
