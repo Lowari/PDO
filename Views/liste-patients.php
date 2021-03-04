@@ -17,7 +17,7 @@ require "../Controllers/liste-patients-controller.php";
         <ul>
             <li><?= $value["firstname"] . " " . $value["lastname"] ?></li>
             <li><a href="profil-patient.php?id=<?= $value['id'] ?>">Information du patient</a></li>
-            <li><a href="modification-patient.php?if=<?= $value['id'] ?>">Modification du patient</a></li>
+            <li><a href="modification-patient.php?id=<?= $value['id'] ?>">Modification du patient</a></li>
         </ul>
     <?php } ?>
 

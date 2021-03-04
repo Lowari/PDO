@@ -174,4 +174,18 @@ class Patients extends Database {
         }
     }
 
+    public function updatePatient($arrayParameter) {
+        $query = "UPDATE `patients` SET `lastname` = :lastname, `firstname` = :firstname, `birthdate` = :birthdate, `phone` = :phone, `mail` = :mail WHERE `id` = :id ;";
+        $buildQuery = parent::getDb() -> prepare($query);
+
+        $buildQuery -> bindParam('lastname', $arrayParameter['lastname']);
+        $buildQuery -> bindParam('firstname', $arrayParameter['firstname']);
+        $buildQuery -> bindParam('birthdate', $arrayParameter['birthdate']);
+        $buildQuery -> bindParam('phone', $arrayParameter['phone']);
+        $buildQuery -> bindParam('mail', $arrayParameter['mail']);
+        $buildQuery -> bindParam('id', $arrayParameter['id']);
+
+        return $buildQuery -> execute();
+    }
+
 }

@@ -16,15 +16,64 @@ require "../Controllers/modification-patient-controller.php"
 
 <body>
 
-    <h1 class="text-center">Modification du patient</h1>
+    <div class="container">
 
-    <form action="modification.php" method="POST">
+        <h1 class="text-center mb-5">Modification du patient</h1>
 
-    <label for="firstname">Nom</label>
-    <input type="text" name="firstname" id="firstname" value="<?= $ChangePatient['firstname'] ?>">
-    
-    
-    </form>
+        <form action="modification-patient.php" method="POST">
+
+            <div class="row mb-3">
+                <div class="col text-center fw-bold">
+                    <label for="firstname" class="form-label text-center">Nom :</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" name="firstname" id="firstname" value="<?= $ChangePatient['lastname'] ?>" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center fw-bold mb-3">
+                    <label for="lastname" class="form-label">Prénom :</label>
+                </div>
+                <div class="col-9">
+                    <input type="text" name="lastname" id="lastname" value="<?= $ChangePatient['lastname'] ?>" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center fw-bold mb-3">
+                    <label for="birthdate" class="form-label">Date de naissance :</label>
+                </div>
+                <div class="col-9">
+                    <input type="date" name="birthdate" id="birthdate" value="<?= $ChangePatient['birthdate'] ?>" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center fw-bold mb-3">
+                    <label for="phone" class="form-label">Numéro de téléphone :</label>
+                </div>
+                <div class="col-9">
+                    <input type="number" name="phone" id="phone" value="<?= $ChangePatient['phone'] ?>" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center fw-bold mb-4">
+                    <label for="mail" class="form-label">E-mail :</label>
+                </div>
+                <div class="col-9">
+                    <input type="email" name="mail" id="mail" value="<?= $ChangePatient['mail'] ?>" class="form-control">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success" name="submit" value="<?= $id ?>">Modifier</button>
+            </div>
+
+        </form>
+
+    </div>
 
 </body>
 
