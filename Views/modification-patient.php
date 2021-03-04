@@ -20,20 +20,20 @@ require "../Controllers/modification-patient-controller.php"
 
         <h1 class="text-center mb-5">Modification du patient</h1>
 
-        <form action="modification-patient.php" method="POST">
+        <form action="modification-patient.php?id=<?= $id ?>" method="POST">
 
             <div class="row mb-3">
                 <div class="col text-center fw-bold">
-                    <label for="firstname" class="form-label text-center">Nom :</label>
+                    <label for="firstname" class="form-label text-center">Prénom :</label>
                 </div>
                 <div class="col-9">
-                    <input type="text" name="firstname" id="firstname" value="<?= $ChangePatient['lastname'] ?>" class="form-control">
+                    <input type="text" name="firstname" id="firstname" value=" <?= $ChangePatient['firstname'] ?>" class="form-control">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col text-center fw-bold mb-3">
-                    <label for="lastname" class="form-label">Prénom :</label>
+                    <label for="lastname" class="form-label">Nom :</label>
                 </div>
                 <div class="col-9">
                     <input type="text" name="lastname" id="lastname" value="<?= $ChangePatient['lastname'] ?>" class="form-control">
@@ -69,6 +69,7 @@ require "../Controllers/modification-patient-controller.php"
 
             <div class="text-center">
                 <button type="submit" class="btn btn-success" name="submit" value="<?= $id ?>">Modifier</button>
+                <a href="liste-patients.php" class="btn btn-primary">Liste patients</a>
             </div>
 
         </form>

@@ -6,7 +6,6 @@ require "../Models/Patients.php";
 $id = isset($_GET["id"]) ? $_GET["id"] : "";
 
 $Patient = new Patients();
-$ChangePatient = $Patient->getProfilePatient($id);
 
 $errorMessage = [];
 $successMessage = [];
@@ -80,12 +79,17 @@ if (isset($_POST['submit'])) {
     if (empty($errorMessage)) {
 
         $arrayParameter = [];
-        $updatePatient = $Patient->updatePatient($arrayParameter);
 
         $arrayParameter['lastname'] = htmlspecialchars($_POST['lastname']);
         $arrayParameter['firstname'] = htmlspecialchars($_POST['firstname']);
         $arrayParameter['birthdate'] = htmlspecialchars($_POST['birthdate']);
         $arrayParameter['phone'] = htmlspecialchars($_POST['phone']);
         $arrayParameter['mail'] = htmlspecialchars($_POST['mail']);
+        $arrayParameter['id'] = htmlspecialchars($_POST['submit']);
+
+        $updatePatient = $Patient->updatePatient($arrayParameter);
+
     }
 }
+
+$ChangePatient = $Patient->getProfilePatient($id);
