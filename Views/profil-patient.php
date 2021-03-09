@@ -23,6 +23,17 @@ require "../Controllers/profil-patient-controller.php"
         <li>Date de naissance : <?= $GetProfilePatient['birthdate'] ?></li>
         <li>Numéro de téléphone : <?= $GetProfilePatient['phone'] ?></li>
         <li>E-mail : <?= $GetProfilePatient['mail'] ?></li>
+        <li>RDV : <?php if ($showAppointments) {
+                        foreach ($showAppointments as $key => $value) { ?>
+                    <ul>
+                        <li><?= $value['dateHour'] ?></li>
+                    </ul>
+                <?php } ?>
+            <?php } else {
+                        echo "Ce patient n'a pas de RDV";
+                    } ?>
+        </li>
+
     </ul>
 
     <div class="text-center">

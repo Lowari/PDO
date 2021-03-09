@@ -100,12 +100,67 @@ class Appointments extends Database
 
     public function updateAppointments($arrayParameter)
     {
-        $query = "UPDATE `appointments` SET `dateHour` = :dateHour, `idPatients` = :idPatients; WHERE `id` = :id";
+        $query = "UPDATE `appointments` SET `dateHour` = :dateHour, `idPatients` = :idPatients WHERE `id` = :id";
         $buildQuery = parent::getDb()->prepare($query);
 
         $buildQuery->bindParam('dateHour', $arrayParameter['dateHour']);
         $buildQuery->bindParam('idPatients', $arrayParameter['idPatients']);
+        $buildQuery->bindParam('id', $arrayParameter['id']);
 
         return $buildQuery->execute();
+    }
+
+    public function jointureTest()
+    {
+        $query = "SELECT `appointments`.`id`, `appointments`.`dateHour`, `patients`.`firstname`, `patients`.`lastname` FROM `appointments` INNER JOIN `patients` ON `appointments`.`idPatients` = `patients`.`id` ;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->execute();
+        $resulQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($resulQuery)) {
+            return $resulQuery;
+        } else {
+            return false;
+        }
+    }
+
+    public function getAppointments($id)
+    {
+        $query = "SELECT * FROM `appointments` WHERE `id` = :id;";
+        $buildQuery = parent::getDb()->prepare($query);
+
+        $buildQuery->bindParam('id', $id);
+        $buildQuery->execute();
+
+        $resulQuery = $buildQuery->fetch(PDO::FETCH_ASSOC);
+        if (!empty($resulQuery)) {
+            return $resulQuery;
+        } else {
+            return false;
+        }
+    }
+
+    public function profileAppointments($id)
+    {
+        $query = "SELECT `dateHour` FROM `appointments` WHERE `idPatients` = :idPatients;";
+        $buildQuery = parent::getDb()->prepare($query);
+
+        $buildQuery->bindParam('idPatients', $id);
+
+        $buildQuery->execute();
+        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteAppointments($id) {
+        $query = "DELETE FROM `appointments` WHERE  `id` = :id;";
+        $buildQuery = parent::getDb() -> prepare($query);
+
+        $buildQuery -> bindParam('id', $id);
+
+        $buildQuery -> execute();
     }
 }

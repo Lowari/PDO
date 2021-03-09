@@ -192,4 +192,13 @@ class Patients extends Database
 
         return $buildQuery->execute();
     }
+
+    public function deletePatient($id) {
+        $query = "DELETE FROM `patients` WHERE `id` = :id;";
+        $buildQuery = parent::getDb() -> prepare($query);
+
+        $buildQuery -> bindParam('id', $id);
+        
+        $buildQuery -> execute();
+    }
 }

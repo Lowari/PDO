@@ -25,13 +25,21 @@ require "../Controllers/liste-rendezvous-controller.php"
                 <tr class="text-center table-info">
                     <th scope="col">Date & Heure</th>
                     <th scope="col">Patient</th>
+                    <th scope="col">Modifier RDV</th>
+                    <th scope="col">Annuler RDV</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($showAllAppointments as $key => $value) { ?>
+                <?php foreach ($showPatientName as $key => $value) { ?>
                     <tr class="text-center table-success">
                         <td><?= $value['dateHour'] ?></td>
-                        <td><?= $value['idPatients'] ?></td>
+                        <td><?= $value['lastname'] . ' ' . $value['firstname'] ?></td>
+                        <td><a href="modification-rdv.php?id=<?= $value['id'] ?>" class="btn btn-primary">Modifier</a></td>
+                        <td>
+                            <form action="liste-rendezvous.php" method="POST">
+                                <button type="submit" class="btn btn-danger" name="submit" value="<?= $value['id'] ?>">Annuler RDV</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
