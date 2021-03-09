@@ -10,4 +10,11 @@ if (isset($_POST['submit'])) {
     $deletePatient = $Patients->deletePatient($id);
 }
 
+if (isset($_GET['search'])) {
+    $q = htmlspecialchars($_GET['search']); 
+    $search = $Patients -> search($q);
+
+    var_dump($search);
+}
+
 $allPatientsInformations = $Patients->getInformationsPatients();

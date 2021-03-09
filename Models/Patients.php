@@ -193,12 +193,27 @@ class Patients extends Database
         return $buildQuery->execute();
     }
 
-    public function deletePatient($id) {
+    public function deletePatient($id)
+    {
         $query = "DELETE FROM `patients` WHERE `id` = :id;";
-        $buildQuery = parent::getDb() -> prepare($query);
+        $buildQuery = parent::getDb()->prepare($query);
 
-        $buildQuery -> bindParam('id', $id);
-        
-        $buildQuery -> execute();
+        $buildQuery->bindParam('id', $id);
+
+        $buildQuery->execute();
+    }
+
+    public function search($q)
+    {
+        $query = "SELECT `lastname` FROM `patients` WHERE `lastname` = :q;";
+        $buildQuery = parent::getDb()->prepare($query);
+
+        $resultQuery = $buildQuery->fetch(PDO::FETCH_ASSOC);
+
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
     }
 }
