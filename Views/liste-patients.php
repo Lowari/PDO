@@ -16,7 +16,7 @@ require "../Controllers/liste-patients-controller.php";
 
     <div class="container">
 
-    <h1 class="text-center mt-2">Liste Patients</h1>
+        <h1 class="text-center mt-2">Liste Patients</h1>
 
         <form action="liste-patients.php" method="GET" class="text-end mt-4">
             <input type="search" name="search" placeholder="Recherche patient.." value="<?= isset($q) ? $q : "" ?>">
@@ -33,22 +33,46 @@ require "../Controllers/liste-patients-controller.php";
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($allPatientsInformations as $key => $value) { ?>
-                    <tr class="text-center table-success">
-                        <th scope="row"><?= $value["firstname"] . " " . $value["lastname"] ?></th>
-                        <td><a href="profil-patient.php?id=<?= $value['id'] ?>" class="btn btn-info">Information</a></td>
-                        <td><a href="modification-patient.php?id=<?= $value['id'] ?>" class="btn btn-warning">Modifier</a></td>
-                        <td>
-                            <form action="liste-patients.php" method="POST">
-                                <button type="submit" name="submit" class="btn btn-danger" value="<?= $value['id'] ?>">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php } ?>
+                <?php if (isset($search) && !empty($search) && !empty($q)) {
+                    foreach ($search as $key => $value) { ?>
+                        <tr class="text-center table-success">
+                            <th scope="row"><?= $value['firstname'] . ' ' . $value['lastname'] ?></th>
+                            <td><a href="profil-patient?id=<?= $value['id'] ?>" class="btn btn-info">Information</a></td>
+                            <td><a href="modification-patient.php?id=<?= $value['id'] ?>" class="btn btn-warning">Modifier</a></td>
+                            <td>
+                                <form action="liste-patients.php" method="POST">
+                                    <button type="submit" name="submit" class="btn btn-danger" value="<?= $value['id'] ?>">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
+
+                <?php if (!isset($search) || empty($q)) {
+                    foreach ($allPatientsInformations as $key => $value) { ?>
+                        <tr class="text-center table-success">
+                            <th scope="row"><?= $value["firstname"] . " " . $value["lastname"] ?></th>
+                            <td><a href="profil-patient.php?id=<?= $value['id'] ?>" class="btn btn-info">Information</a></td>
+                            <td><a href="modification-patient.php?id=<?= $value['id'] ?>" class="btn btn-warning">Modifier</a></td>
+                            <td>
+                                <form action="liste-patients.php" method="POST">
+                                    <button type="submit" name="submit" class="btn btn-danger" value="<?= $value['id'] ?>">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
+
             </tbody>
         </table>
 
-        <div class="text-center mt-5">
+        <?php if (isset($search) && empty($search)) { ?>
+            <p class="text-center fst-italic">Aucun patient n'a été trouvé ...</p>
+        <?php } ?>
+
+
+
+        <div class="text-center mt-4">
             <a href="ajout-patient.php" class="btn btn-success">Ajouter un nouveau patient</a>
             <a href="../index.php" class="btn btn-primary">Acceuil</a>
         </div>

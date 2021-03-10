@@ -205,10 +205,13 @@ class Patients extends Database
 
     public function search($q)
     {
-        $query = "SELECT `lastname` FROM `patients` WHERE `lastname` = :q;";
+        $query = "SELECT `lastname`, `firstname`, `id` FROM `patients` WHERE `lastname` LIKE :q or `firstname` LIKE  :q;";
         $buildQuery = parent::getDb()->prepare($query);
 
-        $resultQuery = $buildQuery->fetch(PDO::FETCH_ASSOC);
+        $buildQuery -> bindParam('q', $q);
+        $buildQuery -> execute();
+
+        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
 
         if (!empty($resultQuery)) {
             return $resultQuery;

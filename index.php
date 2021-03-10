@@ -14,6 +14,7 @@
         <li><a href="Views/liste-patients.php">Liste patient</a></li>
         <li><a href="Views/rendez-vous.php">Prendre Rendez-vous</a></li>
         <li><a href="Views/liste-rendezvous.php">Liste de RDV</a></li>
+        <li><a href="Views/ajout-patient-rendez-vous.php">Ajouter patient & RDV</a></li>
     </ul>
 
 

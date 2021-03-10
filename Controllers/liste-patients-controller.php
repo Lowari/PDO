@@ -11,10 +11,10 @@ if (isset($_POST['submit'])) {
 }
 
 if (isset($_GET['search'])) {
-    $q = htmlspecialchars($_GET['search']); 
-    $search = $Patients -> search($q);
 
-    var_dump($search);
+    $q = htmlspecialchars($_GET['search']); 
+    $search = $Patients -> search('%'.$q.'%');
+
 }
 
 $allPatientsInformations = $Patients->getInformationsPatients();
