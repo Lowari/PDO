@@ -27,7 +27,7 @@ require "../Controllers/ajout-patient-rendez-vous-controller.php";
                     <label for="lastname" class="form-label">Nom :</label>
                 </div>
                 <div class="col-9">
-                    <input type="text" id="lastname" name="lastname" class="form-control" value="<?= isset($lastname) ? htmlspecialchars($lastname) : "" ?>" placeholder="ex : Dupont">
+                    <input type="text" id="lastname" name="lastname" class="form-control" value="<?= isset($_POST['lastname']) ? htmlspecialchars($_POST['lastname']) : "" ?>" placeholder="ex : Dupont">
                     <p class="text-center fst-italic text-danger"><?= isset($errorMessage['lastname']) ? $errorMessage['lastname'] : "" ?></p>
                 </div>
             </div>
@@ -37,7 +37,7 @@ require "../Controllers/ajout-patient-rendez-vous-controller.php";
                     <label for="firstname" class="form-label">Prénom :</label>
                 </div>
                 <div class="col-9">
-                    <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ex : Jean" value="<?= isset($firstname) ? htmlspecialchars($firstname) : "" ?>">
+                    <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ex : Jean" value="<?= isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname']) : "" ?>">
                     <p class="text-danger fst-italic text-center"><?= isset($errorMessage['firstname']) ? $errorMessage['firstname'] : "" ?></p>
                 </div>
             </div>
@@ -47,7 +47,7 @@ require "../Controllers/ajout-patient-rendez-vous-controller.php";
                     <label for="birthdate" class="form-label">Date de naissance :</label>
                 </div>
                 <div class="col-9">
-                    <input type="date" id="birthdate" name="birthdate" class="form-control" value="<?= isset($successMessage['birthdate']) ? $successMessage['birthdate'] : "" ?>">
+                    <input type="date" id="birthdate" name="birthdate" class="form-control" value="<?= isset($_POST['birthdate']) ? $_POST['birthdate'] : "" ?>">
                     <p class="text-center text-danger fst-italic"><?= isset($errorMessage['birthdate']) ? $errorMessage['birthdate'] : "" ?></p>
                 </div>
             </div>
@@ -57,7 +57,7 @@ require "../Controllers/ajout-patient-rendez-vous-controller.php";
                     <label for="phone" class="form-label">Numéro de téléphone :</label>
                 </div>
                 <div class="col-9">
-                    <input type="number" id="phone" name="phone" class="form-control" placeholder="ex : 0601010101" value="<?= isset($phone) ? htmlspecialchars($phone) : "" ?>">
+                    <input type="number" id="phone" name="phone" class="form-control" placeholder="ex : 0601010101" value="<?= isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : "" ?>">
                     <p class="text-danger text-center fst-italic"><?= isset($errorMessage['phone']) ? $errorMessage['phone'] : "" ?></p>
                 </div>
             </div>
@@ -67,13 +67,33 @@ require "../Controllers/ajout-patient-rendez-vous-controller.php";
                     <label for="mail" class="form-label">Mail :</label>
                 </div>
                 <div class="col-9">
-                    <input type="email" name="mail" id="mail" class="form-control" placeholder="ex : dupont.jean@gmail.com" value="<?= isset($mail) ? htmlspecialchars($mail) : "" ?>">
+                    <input type="email" name="mail" id="mail" class="form-control" placeholder="ex : dupont.jean@gmail.com" value="<?= isset($_POST['mail']) ? htmlspecialchars($_POST['mail']) : "" ?>">
                     <p class="text-center fst-italic text-danger"><?= isset($errorMessage['mail']) ? $errorMessage['mail'] : "" ?></p>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col text-center fw-bold">
+                    <label for="date" class="form-label">Date du rendez-vous :</label>
+                </div>
+                <div class="col-9">
+                    <input type="date" class="form-control" name="date" id="date" value="<?= isset($_POST['date']) ? htmlspecialchars($_POST['date']) : "" ?>">
+                    <p class="text-center text-danger fst-italic"><?= isset($errorMessage['date']) ? $errorMessage['date'] : "" ?></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center fw-bold">
+                    <label for="hour" class="form-label">Heure du rendez-vous :</label>
+                </div>
+                <div class="col-9">
+                    <input type="time" class="form-control" name="hour" id="hour" value="<?= isset($_POST['hour']) ? htmlspecialchars($_POST['hour']) : "" ?>">
+                    <p class="text-danger text-center fst-italic"><?= isset($errorMessage['hour']) ? $errorMessage['hour'] : "" ?></p>
+                </div>
+            </div>
+
             <div class="text-center">
-                <button type="submit" name="next" class="btn btn-success">Suivant</button>
+                <button type="submit" name="submit" class="btn btn-success">Suivant</button>
             </div>
 
         </form>

@@ -49,7 +49,7 @@ require "../Controllers/liste-patients-controller.php";
                 } ?>
 
                 <?php if (!isset($search) || empty($q)) {
-                    foreach ($allPatientsInformations as $key => $value) { ?>
+                    foreach ($patientPerPage as $key => $value) { ?>
                         <tr class="text-center table-success">
                             <th scope="row"><?= $value["firstname"] . " " . $value["lastname"] ?></th>
                             <td><a href="profil-patient.php?id=<?= $value['id'] ?>" class="btn btn-info">Information</a></td>
@@ -78,6 +78,16 @@ require "../Controllers/liste-patients-controller.php";
         </div>
 
     </div>
+
+    <nav>
+        <ul>
+            <li><a href="./?page=<?= $currentPage -1 ?>">Précédent</a></li>
+       
+        <?php for ($page = 1; $page <= $nbPage; $page++) ?>
+        <li><a href="./?page=<?= $page ?>"><?= $page ?></a></li>
+        </ul>
+
+    </nav>
 
 </body>
 

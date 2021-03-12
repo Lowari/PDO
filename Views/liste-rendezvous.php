@@ -30,20 +30,26 @@ require "../Controllers/liste-rendezvous-controller.php"
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($showPatientName as $key => $value) { ?>
-                    <tr class="text-center table-success">
-                        <td><?= $value['dateHour'] ?></td>
-                        <td><?= $value['lastname'] . ' ' . $value['firstname'] ?></td>
-                        <td><a href="modification-rdv.php?id=<?= $value['id'] ?>" class="btn btn-primary">Modifier</a></td>
-                        <td>
-                            <form action="liste-rendezvous.php" method="POST">
-                                <button type="submit" class="btn btn-danger" name="submit" value="<?= $value['id'] ?>">Annuler RDV</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php } ?>
+                <?php if (!empty($showPatientName)) {
+                    foreach ($showPatientName as $key => $value) { ?>
+                        <tr class="text-center table-success">
+                            <td><?= $value['dateHour'] ?></td>
+                            <td><?= $value['lastname'] . ' ' . $value['firstname'] ?></td>
+                            <td><a href="modification-rdv.php?id=<?= $value['id'] ?>" class="btn btn-primary">Modifier</a></td>
+                            <td>
+                                <form action="liste-rendezvous.php" method="POST">
+                                    <button type="submit" class="btn btn-danger" name="submit" value="<?= $value['id'] ?>">Annuler RDV</button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php }
+                } ?>
             </tbody>
         </table>
+        <?php if (empty($showPatientName)) { ?>
+            <p class="text-center fst-italic">Aucun rendez-vous n'est prévu ..</p>
+        <?php } ?>
+
 
         <div class="text-center">
             <a href="rendez-vous.php" class="btn btn-success">Créer un RDV</a>

@@ -5,6 +5,7 @@ require "../Models/Appointments.php";
 require "../Models/Patients.php";
 
 $Patients = new Patients();
+$Appointments = new Appointments();
 
 $errorMessage = [];
 $successMessage = [];
@@ -12,7 +13,7 @@ $successMessage = [];
 $reggexPhone = "/^[0-9]{10}$/";
 $reggexString = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
 
-if (isset($_POST['next'])) {
+if (isset($_POST['submit'])) {
     if (isset($_POST['lastname'])) {
         $lastname = $_POST['lastname'];
         if (!preg_match($reggexString, $lastname)) {
@@ -24,14 +25,14 @@ if (isset($_POST['next'])) {
         if (!empty($lastname) && preg_match($reggexString, $lastname)) {
             $successMessage['lastname'] = htmlspecialchars($lastname);
         }
-    } 
+    }
     if (isset($_POST['firstname'])) {
         $firstname = $_POST['firstname'];
         if (!preg_match($reggexString, $firstname)) {
             $errorMessage['firstname'] = "Veuillez saisir un prénom valide";
         }
         if (empty($firstname)) {
-            $errorMessage['firstname'] = "Veuillez saisir un nom";
+            $errorMessage['firstname'] = "Veuillez saisir un prénom";
         }
         if (!empty($firstname) && preg_match($reggexString, $firstname)) {
             $successMessage['firstname'] = htmlspecialchars($firstname);
@@ -68,5 +69,41 @@ if (isset($_POST['next'])) {
         if (!empty($mail) && filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             $successMessage['mail'] = htmlspecialchars($mail);
         }
+    }
+    if (isset($_POST['date'])) {
+        $date = $_POST['date'];
+        if (empty($date)) {
+            $errorMessage['date'] = "Veuillez séléctionner une date de rendez-vous";
+        } else {
+            $successMessage['date'] = htmlspecialchars($date);
+        }
+    }
+    if (isset($_POST['hour'])) {
+        $hour = $_POST['hour'];
+        if (empty($hour)) {
+            $errorMessage['hour'] = "Veuillez séléctionner une heure de rendez-vous";
+        } else {
+            $successMessage['hour'] = htmlspecialchars($hour);
+        }
+    }
+    if (empty($errorMessage)) {
+
+        $arrayParameter = [];
+
+        $arrayParameter['lastname'] = htmlspecialchars($_POST['lastname']);
+        $arrayParameter['firstname'] = htmlspecialchars($_POST['firstname']);
+        $arrayParameter['birthdate'] = htmlspecialchars($_POST['birthdate']);
+        $arrayParameter['phone'] = htmlspecialchars($_POST['phone']);
+        $arrayParameter['mail'] = htmlspecialchars($_POST['mail']);
+
+        $newPatient = $Patients->getNewPatient($arrayParameter);
+        $getId = $Patients->getDb() -> lastInsertId();
+
+        $arrayParameter['dateHour'] = htmlspecialchars($_POST['date'] . " " . $_POST['hour']);
+        $arrayParameter['idPatients'] = $getId;
+
+        $newAppointment = $Appointments->getNewAppointments($arrayParameter);
+
+        $_POST = [];
     }
 }

@@ -219,4 +219,36 @@ class Patients extends Database
             return false;
         }
     }
+
+    public function getCount() {
+        $query = "SELECT COUNT(`id`) as nbPatients FROM  `patients`;";
+        $buildQuery = parent::getDb()->prepare($query);
+
+        $buildQuery -> execute();
+        
+        $resultQuery = $buildQuery -> fetch(PDO::FETCH_ASSOC);
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
+
+    public function pagination($currentPage, $perPage) {
+        $query = "SELECT * FROM `patients` LIMIT ".(($currentPage-1)*$perPage).", $perPage;";
+        $buildQuery = parent::getDb() -> prepare($query);
+
+        //$buildQuery -> bindParam('currentPage', $currentPage);
+        //$buildQuery -> bindParam('perPage', $perPage);
+
+        $buildQuery -> execute();
+        $resultQuery = $buildQuery -> fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
+
+
 }
