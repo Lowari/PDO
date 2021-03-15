@@ -81,10 +81,11 @@ require "../Controllers/liste-patients-controller.php";
 
     <nav>
         <ul>
-            <li><a href="./?page=<?= $currentPage -1 ?>">Précédent</a></li>
-       
-        <?php for ($page = 1; $page <= $nbPage; $page++) ?>
-        <li><a href="./?page=<?= $page ?>"><?= $page ?></a></li>
+            <li><a href="./?page=<?= $currentPage - 1 ?>">Précédent</a></li>
+
+            <?php for ($page = 1; $page <= $nbPage; $page++) { ?>
+                <li><a href="liste-patients.php?page=<?= $page ?>"><?= $page ?></a></li>
+            <?php } ?>
         </ul>
 
     </nav>

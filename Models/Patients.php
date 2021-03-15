@@ -234,12 +234,13 @@ class Patients extends Database
         }
     }
 
-    public function pagination($currentPage, $perPage) {
-        $query = "SELECT * FROM `patients` LIMIT ".(($currentPage-1)*$perPage).", $perPage;";
+    public function pagination($startValue, $perPage) {
+        $query = "SELECT * FROM `patients` LIMIT :startValue, :perPage;";
         $buildQuery = parent::getDb() -> prepare($query);
 
-        //$buildQuery -> bindParam('currentPage', $currentPage);
-        //$buildQuery -> bindParam('perPage', $perPage);
+        $buildQuery -> bindParam('startValue', $startValue, PDO::PARAM_INT);
+        $buildQuery -> bindParam('perPage', $perPage, PDO::PARAM_INT);
+        
 
         $buildQuery -> execute();
         $resultQuery = $buildQuery -> fetchAll(PDO::FETCH_ASSOC);
@@ -249,6 +250,5 @@ class Patients extends Database
             return false;
         }
     }
-
 
 }
